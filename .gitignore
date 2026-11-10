@@ -1,0 +1,12 @@
+# Sanal ortam: makineye özgü, requirements.txt'den yeniden kurulur
+.venv/
+
+# Üretilen veri ve grafikler: kod çalıştırılarak yeniden üretilebilir
+outputs/
+
+# Python'un önbellek ve kurulum artıkları
+__pycache__/
+*.egg-info/
+
+# Arşiv:
+archive/

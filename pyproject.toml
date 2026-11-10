@@ -1,0 +1,12 @@
+[project]
+name = "monet"
+version = "0.1.0"
+requires-python = ">=3.13"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+# Paketler src/ altında aranır; scripts/ paket değildir
+[tool.setuptools.packages.find]
+where = ["src"]
