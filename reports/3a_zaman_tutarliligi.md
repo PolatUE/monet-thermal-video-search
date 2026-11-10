@@ -40,6 +40,7 @@ R² yalnızca bilgi amaçlı; karar vermiyor (dirtroad_05: R² = 0,99975, ama ar
    - dirtroad_07: ~247. saniyede; +2,7 sn.
    - Basamaklar tek bir karede değil, birkaç saniyelik video boyunca yükseliyor. Bu şekil saat atlamasından çok kaydın yavaşlamasına/takılmasına uyuyor. Ön sonuç: `date_captured` gerçek zamanı, kare numarası kaydedilen kare sırasını gösteriyor.
    - Ardışık iki kareye bakan sıçrama aramayla bu basamaklar bulunamadı; tespit grafikle yapıldı.
+   ![Kayıttaki zaman − kare numarasından beklenen zaman](figures/clock_offset.png)
 5. **Görüntü–telemetri eşleşmesi etkilenmiyor.** MONET'te telemetri her karenin kendi kaydında. Etkilenen, video saniyesi ile gerçek saat arasındaki eşleme.
 
 ## Kararlar
