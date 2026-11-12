@@ -41,7 +41,7 @@ Ham veri salt okunur kullanılır; tüm çıktılar `outputs/` altına yazılır
 | `01_inspect_labels.py` | `labels.json` yapısını ve dosya eşleşmesini özetler | ekran |
 | `02_build_frame_table.py` | Kare ve kutu tabloları | `frames.parquet`, `annotations.parquet` |
 | `03_time_check.py` | 3a: geri gitme, fps, üç parça, artıklar, boşluklar | `suitability/time_check.csv` |
-| `04_clock_offset.py` | Saat − kare zamanı farkı grafiği | `suitability/clock_offset.png` |
+| `04_clock_offset.py` | Saat − kare zamanı farkı grafiği | `figures/clock_offset.png` |
 | `05_inspect_png.py` | PNG formatı (8 bit RGB, 800×600) | ekran |
 | `06_plan_clips.py` | Boşlukta bölme, 12,5 fps yuva planı | `clips.parquet`, `slots.parquet` |
 | `07_encode_videos.py` | H.264 MP4 üretimi (PyAV) | `videos/*.mp4` |
