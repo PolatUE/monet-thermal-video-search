@@ -1,7 +1,7 @@
 import pandas as pd
 
 from monet.config import OUTPUT_DIR
-from monet.dataset import (TELEMETRY_KEYS, annotations_table, find_sequences,
+from monet.data.dataset import (TELEMETRY_KEYS, annotations_table, find_sequences,
                            frames_table, load_labels)
 
 # Her labels.json yalnızca bir kez okunur; iki tablo da aynı okumadan üretilir

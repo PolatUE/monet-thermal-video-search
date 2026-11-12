@@ -1,7 +1,7 @@
 import numpy as np
 from PIL import Image
 
-from monet.dataset import find_sequences, frame_number
+from monet.data.dataset import find_sequences, frame_number
 
 for name, d in find_sequences().items():
     # Kare numarasına göre sırala (alfabetik sırada image10 < image2 olur)

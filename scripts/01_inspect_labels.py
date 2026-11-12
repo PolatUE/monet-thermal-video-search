@@ -1,7 +1,7 @@
 import sys
 from collections import Counter
 
-from monet.dataset import find_sequences, load_labels
+from monet.data.dataset import find_sequences, load_labels
 
 
 def describe(obj, name="root", depth=0, max_depth=4):
