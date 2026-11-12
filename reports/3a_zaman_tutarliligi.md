@@ -48,8 +48,10 @@ R² yalnızca bilgi amaçlı; karar vermiyor (dirtroad_05: R² = 0,99975, ama ar
 - Zaman ekseni kare numarasından kurulur; her karenin gerçek zamanı (`t`) tabloda ayrıca saklanır. Arama sonucu hem video saniyesini hem gerçek saati döndürür. (Seçenek A)
 - Kontrol 5'in eşiği, toplam eksik oranı yerine segment başına gerçek kare sayısına göre yeniden tanımlandı.
 
-## Açık konular
+   ## Sonradan kapanan konular
 
-- Video kare hızı: 12,5 fps ızgarası öneriliyor (bütün sekanslara uyuyor), onay bekliyor.
-- "Boşlukta böl" kuralı (5 sn'den uzun boşlukta sekansı ayrı videolara bölmek): ileride değerlendirilecek.
-- Kayıt takılması yorumunun telemetriyle doğrulanması: 3b'de yapılacak (basamak öncesi/sonrası GPS konum farkı).
+   - Video kare hızı: **12,5 fps** (bütün sekanslarda kare numaraları tek; ızgaraya oturuyor).
+   - **Boşlukta böl** kuralı uygulandı: 5 sn'den uzun boşlukta kayıt ayrı kliplere bölündü, 5 sn'den kısa parçalar atlandı → 14 klip, 32,6 dk (`scripts/06_plan_clips.py`).
+   - K5 yalnızca en uzun boşluğu ölçüyordu; klip planında runway_02'de 6, dirtroad_01'de 2 adet 5 sn'den uzun boşluk bulundu.
+   - Kayıt takılması yorumu 3b K6'da GPS ile doğrulandı.
+   - Termal düşük kontrast (runway_01_p2 ~1:09–1:18) 3c K5'te ölçüldü.
