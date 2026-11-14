@@ -16,3 +16,5 @@ _raw = RAW_DIR.resolve()
 for _d in (OUTPUT_DIR, REPORT_DIR):
     if _d.resolve().is_relative_to(_raw):
         raise RuntimeError(f"Çıktı klasörü ham veri altında olamaz: {_d}")
+
+INDEX_DIR = OUTPUT_DIR / "index"   # model başına embedding indeksleri: index/<model_adı>/
