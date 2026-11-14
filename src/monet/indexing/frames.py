@@ -25,7 +25,7 @@ def select_frames(segments: pd.DataFrame, slots: pd.DataFrame, n: int = 4,
         # Kalite tablosuyla eşleştir, boş kareleri at (eşik burada, tabloda değil)
         cand = cand.merge(quality[["clip", "slot", "lit"]], on=["clip", "slot"], how="left")
         cand = cand[cand["lit"] >= min_lit]
-            # Klip başına sıralı slot dizisi: her segmentte tüm tabloyu taramamak için
+    # Klip başına sıralı slot dizisi: her segmentte tüm tabloyu taramamak için
     by_clip = {k: g["slot"].sort_values().to_numpy() for k, g in cand.groupby("clip")}
 
     rows = []
