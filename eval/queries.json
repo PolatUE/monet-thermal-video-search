@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "queries": [
+    {
+      "id": "vehicle",
+      "target": {"type": "object", "category": "vehicle", "big_px": 100},
+      "texts": [
+        "a car driving on a dirt road raising a cloud of dust",
+        "a vehicle on a road seen from above",
+        "a thermal image of a car"
+      ]
+    },
+    {
+      "id": "person",
+      "target": {"type": "object", "category": "person", "big_px": 32},
+      "texts": [
+        "people standing in a field, bright white human silhouettes in a thermal image",
+        "a person walking on a dirt road seen from above",
+        "a thermal image of a group of people"
+      ]
+    },
+    {
+      "id": "steep_view",
+      "target": {"type": "pitch", "pos_max_deg": -40, "neg_min_deg": -25},
+      "texts": [
+        "a steep oblique aerial view looking down at fields",
+        "a high-angle drone view of farmland from above"
+      ]
+    }
+  ]
+}

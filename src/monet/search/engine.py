@@ -12,7 +12,7 @@ RESULT_COLUMNS = ["rank", "score", "clip", "seg", "video_bas", "video_son", "t_b
 
 
 class SearchEngine:
-    """Açılışta indeks ve model bir kez yüklenir; search() her sorguda yalnızca metni kodlar ve karşılaştırır."""
+    """Açılışta indeks ve model bir kez yüklenir; her sorguda yalnızca metin kodlanır ve karşılaştırılır."""
 
     def __init__(self, index_name: str = DEFAULT_INDEX):
         self.index_name = index_name
@@ -27,12 +27,16 @@ class SearchEngine:
         assert len(self.meta) == len(self.vectors)      # meta'nın i. satırı = vektörlerin i. satırı
         self.meta["video_son"] = self.meta["video_bas"] + self.meta["yuva"] / FPS
 
+    def scores(self, query: str) -> np.ndarray:
+        """Sorgunun tüm segmentlerle kosinüs benzerliği; i. değer = meta'nın i. satırı."""
+        q = self.model.encode_text([query])[0]          # (512,) birim vektör
+        return self.vectors @ q                         # birim vektörlerde iç çarpım = kosinüs benzerliği
+
     def search(self, query: str, k: int = 10, filters: dict | None = None) -> pd.DataFrame:
         """En benzer k segmenti skor sırasıyla döndürür. filters v1'de (telemetri filtresi) eklenecek."""
         if filters:
             raise NotImplementedError("Telemetri filtresi v1'de eklenecek")
-        q = self.model.encode_text([query])[0]          # (512,) birim vektör
-        scores = self.vectors @ q                       # birim vektörlerde iç çarpım = kosinüs benzerliği
+        scores = self.scores(query)
         top = np.argsort(-scores)[:k]                   # büyükten küçüğe ilk k
         res = self.meta.iloc[top].copy()
         res["rank"] = np.arange(1, len(top) + 1)
