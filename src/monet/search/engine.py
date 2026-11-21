@@ -6,6 +6,7 @@ from monet.config import OUTPUT_DIR
 from monet.indexing.build import load_index
 from monet.indexing.frames import FPS
 from monet.models.clip import ClipModel
+from monet.search.filters import filter_keys
 
 DEFAULT_INDEX = "ViT-B-32__laion2b_s34b_b79k"
 RESULT_COLUMNS = ["rank", "score", "clip", "seg", "video_bas", "video_son", "t_bas", "t_son", "seq", "n_frames"]
@@ -32,11 +33,18 @@ class SearchEngine:
         q = self.model.encode_text([query])[0]          # (512,) birim vektör
         return self.vectors @ q                         # birim vektörlerde iç çarpım = kosinüs benzerliği
 
+    def mask(self, filters: dict) -> np.ndarray:
+        """Filtreden geçen segmentler True; i. değer = meta'nın i. satırı (değerlendirme de bunu kullanır)."""
+        allowed = pd.MultiIndex.from_frame(filter_keys(filters))
+        return pd.MultiIndex.from_frame(self.meta[["clip", "seg"]]).isin(allowed)
+
     def search(self, query: str, k: int = 10, filters: dict | None = None) -> pd.DataFrame:
-        """En benzer k segmenti skor sırasıyla döndürür. filters v1'de (telemetri filtresi) eklenecek."""
-        if filters:
-            raise NotImplementedError("Telemetri filtresi v1'de eklenecek")
+        """En benzer k segmenti skor sırasıyla döndürür. filters varsa önce filtre (ön filtre), sonra sıralama."""
         scores = self.scores(query)
+        if filters:
+            allowed = self.mask(filters)
+            scores = np.where(allowed, scores, -np.inf)  # filtre dışı en sona düşer
+            k = min(k, int(allowed.sum()))              # filtreden k'dan az geçerse daha az sonuç
         top = np.argsort(-scores)[:k]                   # büyükten küçüğe ilk k
         res = self.meta.iloc[top].copy()
         res["rank"] = np.arange(1, len(top) + 1)

@@ -6,6 +6,7 @@ click==8.5.1
 colorama==0.4.6
 contourpy==1.4.0
 cycler==0.12.1
+duckdb==2.0.1
 filelock==4.2.10
 fonttools==4.68.0
 fsspec==2026.9.0
